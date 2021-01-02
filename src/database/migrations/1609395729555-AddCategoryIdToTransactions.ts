@@ -1,4 +1,9 @@
-import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+   TableColumn,
+   TableForeignKey
+  } from "typeorm";
 
 export default class AddCategoryIdToTransactions1609395729555 implements MigrationInterface {
 
@@ -18,7 +23,7 @@ export default class AddCategoryIdToTransactions1609395729555 implements Migrati
            referencedColumnNames:['id'],
            referencedTableName:'categories',
            name:'TransactionCategory',
-           onUpdate:'Cascade',
+           onUpdate:'CASCADE',
            onDelete:'SET NULL',
          })
        )
@@ -29,7 +34,7 @@ export default class AddCategoryIdToTransactions1609395729555 implements Migrati
     public async down(queryRunner: QueryRunner): Promise<void> {
 
       await queryRunner.dropForeignKey('transactions', 'TransactionCategory');
-      await queryRunner.dropColumn('transactions', 'category_id')
+      await queryRunner.dropColumn('transactions', 'category_id');
     }
 
 }

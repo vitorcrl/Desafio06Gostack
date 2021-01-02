@@ -4,11 +4,12 @@ import { Entity,
         CreateDateColumn,
         UpdateDateColumn,
         ManyToOne,
+        JoinColumn,
       } from 'typeorm';
 
 import Category from './Category';
 
-@Entity('transaction')
+@Entity('transactions')
 class Transaction {
 
   @PrimaryGeneratedColumn('uuid')
@@ -20,7 +21,7 @@ class Transaction {
   @Column()
   type: 'income' | 'outcome';
 
-  @Column()
+  @Column('decimal')
   value: number;
 
   @ManyToOne(()=> Category)
